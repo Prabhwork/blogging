@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import logoImage from './logo.png';
 import logoImage1 from './logo1.png';
 import video from './blogback.mp4';
+import videoFile from './blogback2.mp4';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -131,6 +132,10 @@ function Blog() {
          
       <div className='Login'>
         <div className='blog-main'>
+       <div className='blog-video'>
+        <video width="400px" height="400px" autoPlay loop muted>
+                        <source src={videoFile} type="video/mp4" />
+                    </video></div>
           <div className="blog-data">
             <img src={logoImage} className='login-logo1' alt="Logo" />
             <img src={logoImage1} className='login-logo2' alt="Logo" />
@@ -179,6 +184,7 @@ function Blog() {
         </div>
       </div>
     </div>
+    
   );
 }
 

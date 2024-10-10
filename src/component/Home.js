@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import videoFile from './educational.blog.gif';
 import Carousel from 'react-multi-carousel';
 
+import { useInView } from 'react-intersection-observer';
+
 import 'react-multi-carousel/lib/styles.css';
 
 import img1 from '../blogging/blogging.jpeg';
@@ -21,11 +23,15 @@ import Header from './Header';
 
 const responsive = {
   desktop: {
-    breakpoint: { max: 3000, min: 1024 },
+    breakpoint: { max: 3000},
     items: 4,
   },
+  desktop: {
+    breakpoint: { max: 1024, min: 800 },
+    items: 3,
+  },
   tablet: {
-    breakpoint: { max: 800, min: 448 },
+    breakpoint: { max: 799, min: 448 },
     items: 2,
   },
   mobile: {
@@ -36,6 +42,17 @@ const responsive = {
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
+  const { ref, inView } = useInView({ threshold: 1 ,triggerOnce: false});
+  const { ref: companyRef, inView: companyInView } = useInView({ threshold: 0.9,triggerOnce: false }); 
+  const { ref: followRef, inView: followInView } = useInView({ threshold: 0.9,triggerOnce: false }); 
+
+  const [ref1, inView1] = useInView({ threshold: 0.7,triggerOnce: false }); 
+  const [ref2, inView2] = useInView({ threshold: 0.7,triggerOnce: false }); 
+  const [ref3, inView3] = useInView({ threshold: 0.7,triggerOnce: false }); 
+  const [ref4, inView4] = useInView({ threshold: 0.7,triggerOnce: false }); 
+  const [ref5, inView5] = useInView({ threshold: 0.7,triggerOnce: false }); 
+  const [ref6, inView6] = useInView({ threshold: 0.7,triggerOnce: false }); 
+  const [ref7, inView7] = useInView({ threshold: 0.7,triggerOnce: false }); 
 
   useEffect(() => {
     fetch('http://localhost:8000/')
@@ -43,7 +60,6 @@ export default function Home() {
       .then((data) => setPosts(data))
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
-
   const handleLike = (postId) => {
     const updatedPosts = posts.map((post) => {
       if (post.id === postId) {
@@ -79,12 +95,13 @@ export default function Home() {
   };
 
   return (
-    <div className="Home-Main">
+    
+      <div className="Home-Main">
       <Header />
       <div className="home-main-cover">
         <div className="home-border">
-          <h1 className="home-h1">Blogs & Websites</h1>
-          <h2 className="home-h2">For Education</h2>
+          <h1 className="home-h1">Educational Blogs</h1>
+          <h2 className="home-h2">For Creating</h2>
           <p className="home-p">
             By educators, for educators. We are the oldest and most trusted web
             publishing platform for teachers and students.
@@ -97,7 +114,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="slider-main">
+      <div ref={ref} className={`slider-main ${inView ? 'fade-in' : 'fade-out'}`}>
         <Carousel responsive={responsive}>
           <div className="slider-image">
             <img src={img1} className="slider-image1" alt="Blog 1" />
@@ -170,7 +187,7 @@ export default function Home() {
 
       <div className="footer-main">
         <div className="bio">
-          <div className="company">
+        <div ref={companyRef} className={`company ${companyInView ? 'slide-in-left' : 'slide-out'}`}>
             <h1>EduPathway</h1>
             <br />
             <br />
@@ -180,7 +197,7 @@ export default function Home() {
               Canada in 46062
             </h4>
           </div>
-          <div className="follow">
+          <div ref={followRef} className={`follow ${followInView ? 'slide-in-right' : 'slide-out'}`}>
             <h1>Follow Us</h1>
             <Link to="#">
               <i className="fa-brands fa-facebook" style={{ color: '#0c29bd' }}></i>
@@ -198,7 +215,7 @@ export default function Home() {
         </div>
 
         <div className="data1">
-        <div className="terms1">
+        <div ref={ref1} className={`terms1 ${inView1 ? 'slide-in-up' : ''}`}>
             <h1>Insurance</h1>
             <Link to="#">Blog Insurance</Link>
             <br />
@@ -206,13 +223,12 @@ export default function Home() {
             <br />
             <Link to="#">International Student Insurance</Link>
           </div>
-
-          <div className="terms1">
+          <div ref={ref2} className={`terms2 ${inView2? 'slide-in-up' : ''}`}>
             <h1>Popular Topics</h1>
             <Link to="#">Administration & Leadership</Link>
             <br />
             <Link to="#">ChatGPT & Generative AI</Link>
-            <br />
+            <br/>
             <Link to="#">Classroom Management</Link>
             <br/>
              <Link to="#">Culturally Responsive Teaching</Link>
@@ -222,7 +238,7 @@ export default function Home() {
             <Link to="#">Research</Link>
             <br/> 
           </div>
-          <div className="terms2">
+          <div ref={ref3} className={`terms3 ${inView3 ? 'slide-in-up' : ''}`}>
             <h1>Resources & Support</h1>
             <Link to="#">Customer Resources</Link>
             <br />
@@ -232,7 +248,7 @@ export default function Home() {
             <br />
             <Link to="#">FAQs</Link>
           </div>
-          <div className="terms3">
+          <div ref={ref4} className={`terms4 ${inView4? 'slide-in-up' : ''}`}>
             <h1>Company</h1>
             <Link to="#">About EduPathway</Link>
             <br />
@@ -241,7 +257,7 @@ export default function Home() {
             <Link to="#">Contact Us</Link>
           </div>
 
-          <div className="terms3">
+          <div ref={ref5} className={`terms5 ${inView5 ? 'slide-in-up' : ''}`}>
             <h1>Grade Levels</h1>
             <Link to="#"> Pre-K</Link>
             <br />
@@ -255,15 +271,16 @@ export default function Home() {
           </div>
          
         </div>
-        <div className='terms'>
+        <div ref={ref6} className={`terms ${inView6 ? 'slide-in-up' : ''}`}>
           <h4>Privacy Policy Terms of Use.</h4>
          
      </div>
-      <div className='footer'>
+      <div ref={ref7} className={`footer ${inView7 ? 'slide-in-up' : ''}`}>
       <h1>Edupathway is an initiative of the Prabhjot Singh Educational Foundation.</h1>
       <h3>©2024 prabhjot singh Educational Foundation. All Rights Reserved.<br/>
       Edupathway®, the EDU Logo™ and Prabhjot Singh Education Research Logo® are trademarks or registered trademarks of the<br/> 
       Prabhjot Singh Educational Foundation in the Canada Vancouver and other countries.</h3>
     </div></div></div>
   );
+  
 }

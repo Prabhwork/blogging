@@ -226,16 +226,28 @@
 .home-h1 {
   margin-top: 150px;
   font-size: 60px;
-  animation: fadeInUp 1s ease-in-out both;
+  animation: fadeIn 1s ease-in-out both;
 }
 
 .home-h2 {
   margin-top: -40px;
-  margin-left: -200px;
+  margin-left: -50px;
   font-size: 45px;
   animation: fadeInLeft 1s ease-in-out both;
 }
-
+.home-p {
+  margin-top: -30px;
+  border: 1px solid white;
+  width: 500px;
+  animation: fadeInRight 1s ease-in-out both;
+  color: #404040;
+  font-size: 20px;
+}
+@media (max-width: 1200px) {
+  .home-h2 {
+    margin-left: 20px;
+  }
+}
 @media (max-width: 768px) {
   .home-h1 {
     margin-top: 100px;
@@ -243,13 +255,13 @@
     animation: fadeInUp 1s ease-in-out both;
   }
   .home-h2 {
-    margin-top: -40px;
+    margin-top: -25px;
     margin-left: 0;
     font-size: 55px;
     animation: fadeInLeft 1s ease-in-out both;
   }
   .home-p{
-    margin-top: 70px;
+    margin-top: 30px;
     margin-left: 50px;
   }
   .home-blog-button{
@@ -265,37 +277,25 @@
     margin-left: -70px;
     margin-top:0px;
   }
-
-  .gif-container {
-    width: 100%;
-    max-width: 600px;
-    height: 400px;
-  }
-  
-  .gif-container img {
-    align-items: center;
-    justify-content: center;
-    max-width: 600px;
-    height: 400px;
-    margin-top: 0%;
-    margin-left: 40px;
-  }
 }
-@media (max-width: 425px){
+@media (max-width: 426px){
   .home-h1 {
     margin-top: 100px;
-    font-size:30px;
+    font-size:35px;
     animation: fadeInUp 1s ease-in-out both;
+    
   }
   .home-h2 {
-    margin-top: -40px;
+    margin-top: -10px;
     margin-left: 0;
-    font-size: 15px;
+    font-size: 20px;
     animation: fadeInLeft 1s ease-in-out both;
+    border: none;
   }
   .home-p{
-    margin-top: 70px;
-    margin-left: 50px;
+    margin-top: 20px;
+    margin-left: 0px;
+    width: 300px;
   }
   .home-blog-button{
     margin-top: 200px;
@@ -307,17 +307,7 @@
   margin-left: 100px;
 }
 
-.home-p {
-  margin-top: -30px;
-  border: 1px solid white;
-  width: 500px;
-  animation: fadeInRight 1s ease-in-out both;
-  color: #404040;
-  font-size: 20px;
-}
-
-
-@keyframes fadeInUp {
+@keyframes fadeIn{
   0% {
     opacity: 0;
     transform: translateY(20px);
@@ -401,7 +391,25 @@
   margin-top: 150px;
 
 }
-
+@media (max-width: 768px){
+  .gif-container{
+    max-width: 600px;
+    height: 400px;
+  } 
+  .gif-container img {
+    margin-top: 50px; 
+    margin-left: 40px;
+  }
+}
+@media (max-width: 426px){
+  .gif-container{
+    max-width: 350px;  
+    height: 300px;
+  } 
+  .gif-container img {
+    margin-top: 50px; 
+  }
+}
 @keyframes video {
   0% {
     opacity: 0;
@@ -843,23 +851,27 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 100%;
+  width: 100%;
+  height: auto;
   margin-top: 30px;
   animation: fadeIn 1.5s ease-in-out;
 }
+.blog-main video{
+  display: none;
+}
 .blog-data {
-
-  margin-top: 20px;
+  margin-top: 30px;
   justify-content: center;
   align-items: center;
   padding: 30px;
- 
   width: 650px;
   height: auto;
   animation: slideUp 1.2s ease-in-out;
 }
 .blog{
   position: relative;
+  justify-content: center;
+  align-items: center;
   width: 100vw;
   height: 100vh;
   overflow: hidden; 
@@ -875,6 +887,32 @@
   z-index: -1;
   transform: translate(-50%, -50%);
   object-fit: cover; 
+}
+@media (max-width: 426px){
+  .blog-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+  }
+  .blog-main video{
+    display: block; 
+    width: 600px;
+    height: 350px;
+  }
+  .blog1{
+    display: none;
+  }
+  .blog-data {
+    width: 250px;
+    
+    box-shadow: 5px 0px 40px rgba(0, 0, 0, 0.1);
+    animation: slideUp 1.2s ease-in-out;
+  }
+  .blog{
+  width: 100%;
+  height: 100%;
+  }
 }
 
 .login-data1 {
@@ -1023,7 +1061,7 @@
   gap: 20px;
   width: 100%; 
 }
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .sidebar {
     display: flex;
     flex-direction: column;
@@ -1133,7 +1171,7 @@
 .sidebar-toggle:hover {
   font-size: 27px;
 }
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
   .sidebar-toggle {
     display: block;
   }
